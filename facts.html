@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Великий Устюг - Интересные факты</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('6.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #1a2a3a;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #1e4a6b, #0f2c3f);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-main: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0 2rem;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover { border-bottom-color: #ffd966; color: #ffd966; }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; flex: 1; }
+        .page {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        h1 { color: #1e4a6b; margin-bottom: 1rem; font-size: 2rem; border-left: 10px solid aqua; padding-left: 1rem; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .card:hover { transform: translateY(-5px); }
+        footer { background: #0f2c3f; color: #b0c4de; text-align: center; padding: 1.5rem; margin-top: auto; }
+        .footer-nav { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .footer-nav a { color: #ffd966; text-decoration: none; margin: 0 0.5rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Великий Устюг</div>
+            <div class="nav-links">
+                <a href="main.html">Главная</a>
+                <a href="constructor.html">Конструктор</a>
+                <a href="templates.html">Шаблоны</a>
+                <a href="facts.html" class="active">Факты</a>
+                <a href="map.html">Карта</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="page">
+            <h1>Интересные факты о Великом Устюге</h1>
+            <div class="cards">
+                <div class="card"><img src="8.jpg" style="width:100%; height:150px; object-fit:cover; border-radius:15px;"><h3>Древний возраст</h3><p>Год основания — 1147, он ровесник Москвы.</p></div>
+                <div class="card"><img src="1.jpg" style="width:100%; height:150px; object-fit:cover; border-radius:15px;"><h3>Родина Деда Мороза</h3><p>Статус закреплён с 1999 года. Тысячи писем ежегодно.</p></div>
+                <div class="card"><img src="3.jpg" style="width:100%; height:150px; object-fit:cover; border-radius:15px;"><h3>Прокопий Праведный</h3><p>Святой, предсказавший спасение города.</p></div>
+                <div class="card"><img src="9.jpg" style="width:100%; height:150px; object-fit:cover; border-radius:15px;"><h3>Северное чернение</h3><p>Уникальный промысел с XVII века.</p></div>
+                <div class="card"><img src="4.jpg" style="width:100%; height:150px; object-fit:cover; border-radius:15px;"><h3>Климат</h3><p>Зимой до -35°C — настоящая сказка.</p></div>
+                <div class="card"><img src="10.jpg" style="width:100%; height:150px; object-fit:cover; border-radius:15px;"><h3>Соборное дворище</h3><p>Сердце города с уникальными храмами.</p></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Великий Устюг — жемчужина Русского Севера. Байрамов Б.Н.</p>
+    </footer>
+</body>
+</html>

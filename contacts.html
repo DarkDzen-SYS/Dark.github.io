@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Великий Устюг - Контакты</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('6.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #1a2a3a;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #1e4a6b, #0f2c3f);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-main: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0 2rem;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover { border-bottom-color: #ffd966; color: #ffd966; }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; flex: 1; }
+        .page {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        h1 { color: #1e4a6b; margin-bottom: 1rem; font-size: 2rem; border-left: 10px solid aqua; padding-left: 1rem; }
+        .quiz-buttons { display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0; justify-content: center; }
+        .quiz-btn {
+            background: rgba(30, 74, 107, 0.85);
+            border: none;
+            padding: 12px 28px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .quiz-btn:hover { transform: scale(1.05); background: rgba(255, 107, 53, 0.85); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        #quiz-result { font-size: 1.1rem; margin-top: 15px; padding: 10px; background: white; border-radius: 30px; text-align: center; }
+        footer { background: #0f2c3f; color: #b0c4de; text-align: center; padding: 1.5rem; margin-top: auto; }
+        .footer-nav { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .footer-nav a { color: #ffd966; text-decoration: none; margin: 0 0.5rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Великий Устюг</div>
+            <div class="nav-links">
+                <a href="main.html">Главная</a>
+                <a href="constructor.html">Конструктор</a>
+                <a href="templates.html">Шаблоны</a>
+                <a href="facts.html">Факты</a>
+                <a href="map.html">Карта</a>
+                <a href="contacts.html" class="active">Контакты</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="page">
+            <h1>Контакты и помощь туристу</h1>
+            <p>Туристско-информационный центр Великого Устюга:</p>
+            <ul style="margin: 1rem 0 1rem 2rem;">
+                <li>Адрес: Вологодская область, Великоустюгский округ, посёлок Валга, Солнечная улица, 1А</li>
+                <li>Телефон: +7 (911) 516-60-60</li>
+                <li>Режим работы: Ежедневно, с 08:00 до 17:00</li>
+                <li>ТИЦ в Вк: <a href="#">https://vk.com/ustugtur</a></li>
+            </ul>
+            <h2>Как добраться:</h2>
+            <p>Авиа: из Москвы, Череповца, Вологды.<br> Ж/д: до станции «Великий Устюг».<br> Автобус: регулярные рейсы из Вологды, Архангельска, Кирова.</p>
+            <h2>Какое же лучшее время для визита?</h2>
+            <div class="quiz-buttons">
+                <button class="quiz-btn" onclick="checkAnswer(true)">❄️ Зима</button>
+                <button class="quiz-btn" onclick="checkAnswer(false)">🌸 Весна</button>
+                <button class="quiz-btn" onclick="checkAnswer(false)">☀️ Лето</button>
+                <button class="quiz-btn" onclick="checkAnswer(false)">🍂 Осень</button>
+            </div>
+            <div style="background:#e0f2fe; padding:0.5rem; border-radius:15px; margin-top:1rem;">
+                <p id="quiz-result" style="display: none; font-weight: bold;"></p>
+            </div>
+            <div style="background:#e0f2fe; padding:1rem; border-radius:15px; margin-top:1rem;">
+                <strong>Совет:</strong> Обязательно закажите экскурсию заранее в зимний сезон!
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Великий Устюг — жемчужина Русского Севера. Байрамов Б.Н.</p>
+    </footer>
+    <script>
+        function checkAnswer(isCorrect) {
+            const resultText = document.getElementById('quiz-result');
+            if(resultText) {
+                resultText.style.display = 'block';
+                if(isCorrect) {
+                    resultText.textContent = '>> Конечно, зима! С декабря по январь проходят главные празднования Дня рождения Деда Мороза.';
+                    resultText.style.color = 'green';
+                } else {
+                    resultText.textContent = '>> Неправильно, попробуйте еще раз.';
+                    resultText.style.color = 'red';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

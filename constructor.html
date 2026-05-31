@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Великий Устюг - Конструктор маршрутов</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('6.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #1a2a3a;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #1e4a6b, #0f2c3f);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-main: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0 2rem;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover, .nav-links a.active { border-bottom-color: #ffd966; color: #ffd966; }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; flex: 1; }
+        .page {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        h1 { color: #1e4a6b; margin-bottom: 1rem; font-size: 2rem; border-left: 10px solid aqua; padding-left: 1rem; }
+        .constructor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .places-list { background: #f1f5f9; padding: 1.5rem; border-radius: 20px; }
+        .place-item {
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+        }
+        .place-item:hover { background: #e2e8f0; }
+        .place-item input { width: 20px; height: 20px; cursor: pointer; }
+        .place-item label { flex: 1; cursor: pointer; font-weight: 500; }
+        .plan-output { background: #e6f7ff; padding: 1.5rem; border-radius: 20px; border: 2px dashed #1e4a6b; }
+        .plan-list { list-style-type: none; margin-top: 1rem; }
+        .plan-list li { padding: 0.5rem 0; border-bottom: 1px solid #cbd5e1; }
+        .btn {
+            background: #1e4a6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+        .btn:hover { background: #ff6b35; }
+        footer { background: #0f2c3f; color: #b0c4de; text-align: center; padding: 1.5rem; margin-top: auto; }
+        .footer-nav { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .footer-nav a { color: #ffd966; text-decoration: none; margin: 0 0.5rem; }
+        .footer-nav a:hover { text-decoration: underline; }
+
+        /* Стиль уведомления */
+        .toast-notify {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #1e4a6b, #0f2c3f);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            z-main: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Великий Устюг</div>
+            <div class="nav-links">
+                <a href="main.html">Главная</a>
+                <a href="constructor.html" class="active">Конструктор</a>
+                <a href="templates.html">Шаблоны</a>
+                <a href="facts.html">Факты</a>
+                <a href="map.html">Карта</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="page">
+            <h1>Самостоятельно составьте план экскурсии</h1>
+            <div class="constructor-grid">
+                <div class="places-list">
+                    <h3>Достопримечательности (выберите):</h3>
+                    <div id="places-container"></div>
+                    <button class="btn" onclick="saveAndNotify()">Собрать маршрут</button>
+                    <button class="btn" onclick="resetSelection()" style="background:#94a3b8;">Сбросить</button>
+                </div>
+                <div class="plan-output">
+                    <h3>Ваш индивидуальный план экскурсии:</h3>
+                    <ul id="plan-list" class="plan-list"><li>Выберите места слева</li></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Великий Устюг — жемчужина Русского Севера. Байрамов Б.Н.</p>
+    </footer>
+
+    <!-- Элемент для уведомления -->
+    <div id="saveToast" class="toast-notify">Маршрут сохранён. Просмотр сохранённых маршрутов — в разработке.</div>
+
+    <script>
+        const places = [
+            { id: 1, name: "Вотчина Деда Мороза", time: "6 часов" },
+            { id: 2, name: "Соборное дворище (Успенский собор)", time: "1 час" },
+            { id: 3, name: "Музей новогодней игрушки", time: "1 час" },
+            { id: 4, name: "Прокопиевский собор", time: "1 час" },
+            { id: 5, name: "Дом купцов (Музей городского быта)", time: "1 час" },
+            { id: 6, name: "Ледовый городок (зимой)", time: "3 часов" },
+            { id: 7, name: "Сувенирная лавка «Северное чернение»", time: "1 час" }
+        ];
+        let selectedPlaces = [];
+
+        function showNotification() {
+            const toast = document.getElementById('saveToast');
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2500);
+        }
+
+        // Функция, которая обновляет план И показывает уведомление
+        function saveAndNotify() {
+            updatePlan();      // обновляем отображение маршрута
+            showNotification(); // показываем уведомление
+        }
+
+        function applyTemplateFromStorage() {
+            const template = localStorage.getItem('selectedTemplate');
+            if (!template) return false;
+            localStorage.removeItem('selectedTemplate');
+
+            if (template === 'Сказочный тур') selectedPlaces = [1,2,3,7];
+            else if (template === 'Исторический минимум') selectedPlaces = [2,4,5];
+            else if (template === 'Семейный выходной') selectedPlaces = [1,6,3];
+            else return false;
+
+            renderPlacesList();
+            updatePlanWithoutNotify(); // БЕЗ уведомления
+            return true;
+        }
+
+        function renderPlacesList() {
+            const container = document.getElementById('places-container');
+            if(!container) return;
+            container.innerHTML = '';
+            places.forEach(place => {
+                const div = document.createElement('div');
+                div.className = 'place-item';
+                const isChecked = selectedPlaces.includes(place.id);
+                div.innerHTML = `<input type="checkbox" id="place_${place.id}" value="${place.id}" ${isChecked ? 'checked' : ''}><label for="place_${place.id}"><strong>${place.name}</strong> (${place.time})</label>`;
+                const chk = div.querySelector('input');
+                chk.addEventListener('change', function(e) {
+                    if(this.checked) { if(!selectedPlaces.includes(place.id)) selectedPlaces.push(place.id); }
+                    else { selectedPlaces = selectedPlaces.filter(id => id !== place.id); }
+                    updatePlanWithoutNotify(); // БЕЗ уведомления при выборе/снятии галочки
+                });
+                container.appendChild(div);
+            });
+        }
+
+        // Обновление плана БЕЗ уведомления
+        function updatePlanWithoutNotify() {
+            const planList = document.getElementById('plan-list');
+            if(!planList) return;
+            if(selectedPlaces.length === 0) { 
+                planList.innerHTML = '<li>Вы не выбрали ни одно место. Отметьте слева!</li>'; 
+                return; 
+            }
+            const selectedItems = places.filter(p => selectedPlaces.includes(p.id));
+            planList.innerHTML = selectedItems.map((item, idx) => `<li>${idx+1}. ${item.name} — ориентировочно ${item.time}</li>`).join('');
+            planList.innerHTML += `<li style="margin-top:10px;"><strong>Общее время: ~${selectedItems.reduce((sum, p) => sum + (parseInt(p.time) || 1), 0)} часов</strong></li>`;
+        }
+
+        // Обновление плана С уведомлением (используется только по кнопке)
+        function updatePlan() {
+            updatePlanWithoutNotify();
+        }
+
+        function resetSelection() { 
+            selectedPlaces = []; 
+            renderPlacesList(); 
+            updatePlanWithoutNotify(); 
+        }
+
+        applyTemplateFromStorage();
+        renderPlacesList();
+        updatePlanWithoutNotify();
+    </script>
+</body>
+</html>
